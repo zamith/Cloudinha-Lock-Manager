@@ -1,5 +1,7 @@
 class MachineController < ApplicationController
 
+  require 'open3'
+
   def list
     @machines = Machine.all
     @machines.each do |machine|
