@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cloudinha - Reservas </title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
+                               "http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js" %>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="title">Reservas Cloudinha</h1>
+    </div>
+
+    <%= yield %>
+    
+    <div id="footer">
+      <p>Copyright © <%= Time.now.year %> Zamith & Pedro. All rights reserved.</p>
+    </div>
+  </body>
+</html>

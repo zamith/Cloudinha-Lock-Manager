@@ -1,0 +1,60 @@
+#title {
+  text-align: center;
+}
+
+span {
+  padding: 7px;
+}
+
+.menu-item {
+  padding: 10px;
+}
+
+.tooltip {
+  display:none;
+  background:transparent url(/images/black_arrow.png);
+  font-size:17px;
+  height:70px;
+  width:160px;
+  padding:25px;
+  color:#fff;	
+}
+
+.lock-status {
+  color: #CC1100;
+}
+
+.locked {
+  background-color: #A9A9A9;
+}
+
+.container {
+  position: relative;
+  border: 1px groove black;
+  width: 425px;
+  height: 20px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.machine{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  margin: 5px;
+}
+
+.machine .machine-status {
+  font-weight: bold;
+}
+
+.machine .alive {
+  color: green;
+}
+
+.machine .dead {
+  color: red;
+}
