@@ -18,3 +18,5 @@ begin
   raise RuntimeError, "Bundler couldn't find some gems." +
   "Did you run `bundle install`?" 
 end
+
+require 'open3'
