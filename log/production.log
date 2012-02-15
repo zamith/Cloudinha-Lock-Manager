@@ -9919,3 +9919,21 @@ Processing MachineController#list (for 192.168.82.144 at 2012-02-15 17:56:58) [G
 Rendering template within layouts/standard
 Rendering machine/list
 Completed in 998ms (View: 29, DB: 1) | 200 OK [http://requests.cluster.lsd.di.uminho.pt/]
+
+
+Processing MachineController#list (for 192.168.82.159 at 2012-02-15 18:24:57) [GET]
+Rendering template within layouts/standard
+Rendering machine/list
+Completed in 1095ms (View: 29, DB: 1) | 200 OK [http://requests.cluster.lsd.di.uminho.pt/]
+
+
+Processing MachineController#list (for 192.168.82.149 at 2012-02-15 18:25:04) [GET]
+Rendering template within layouts/standard
+Rendering machine/list
+Completed in 1086ms (View: 28, DB: 0) | 200 OK [http://requests.cluster.lsd.di.uminho.pt/]
+
+
+Processing MachineController#list (for 192.168.82.159 at 2012-02-15 18:28:27) [GET]
+Rendering template within layouts/standard
+Rendering machine/list
+Completed in 1114ms (View: 26, DB: 0) | 200 OK [http://requests.cluster.lsd.di.uminho.pt/]
