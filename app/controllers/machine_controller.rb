@@ -1,8 +1,4 @@
-require 'open3'
-
 class MachineController < ApplicationController
-
-  layout 'standard'
 
   def list
     @machines = Machine.all
