@@ -22,6 +22,11 @@ class MachineController < ApplicationController
       end
      end
   end
+	
+  def format
+     @machines = Machine.all
+  end
+
 
 #  def show 
 #    render :action => 'list'
