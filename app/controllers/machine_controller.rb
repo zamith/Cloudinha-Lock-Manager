@@ -7,16 +7,20 @@ class MachineController < ApplicationController
     @machines.each do |machine|
       stdin, stdout, stdin = Open3.popen3('/var/www/ganglia2/nagios/check_heartbeat.sh', "host="+machine[:domain],"threshold=60")
       out = stdout.gets
-      if out.match(/.*(\d\d):(\d\d)$/)
-        if $1 == "00" && $2.to_i <= 30 
-          machine[:status] = 'Alive'
+      if out.nil?
+        machine[:status] = 'Unknown'
+      else
+        if out.match(/.*(\d\d):(\d\d)$/)
+          if $1 == "00" && $2.to_i <= 30 
+            machine[:status] = 'Alive'
+          else
+            machine[:status] = 'Dead'
+          end
         else
           machine[:status] = 'Dead'
         end
-      else
-        machine[:status] = 'Dead'
       end
-    end
+     end
   end
 
 #  def show 
