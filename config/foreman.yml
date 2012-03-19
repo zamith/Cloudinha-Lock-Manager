@@ -1,0 +1,8 @@
+#foreman database connection info
+foreman:
+  hostname: localhost
+  username: dummy
+  password: dummy
+  database: dummy
+  port: 3306
+  socket: "/tmp/mysql.sock"
