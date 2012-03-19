@@ -1,68 +1,57 @@
 <script>
 jQuery(document).ready(function($){
-  $("#lock-button").click(function(){
-    var name = prompt("What's your name?", "");
-    if(name==null)
-    {
-      $("#main").prepend("<div id='error'><p>Cannot lock without a name</p><div class='clear'></div></div>");    
-      $("#error").delay(4000).fadeOut("slow");
-      return false;
-    }
-    var lock_attr = {"name": name, "from": $("#from_machine option:selected").val(), "to": $("#to_machine option:selected").val()}
-    jQuery.ajax({
-      type: 'POST',
-      data: lock_attr,
-      url: window.location.href.replace(/\#.*/,"")+"machine/lock",
-      dataType: 'json',
-      error: function() {},
-      success: function(r) {
-        if(r.locked != "[]")
-        {
-          $("#main").prepend("<div id='error'><p>Machines "+r.locked+" were already locked!</p><div class='clear'></div></div>");    
-          $("#error").delay(4000).fadeOut("slow");
-        }
-        setTimeout("window.location.href = window.location.href",4000);
-      }
-    });
-  });
 
- $("#awake-button").click(function(){
-    var lock_attr = {"from": $("#from_machine option:selected").val(), "to": $("#to_machine option:selected").val()}
-    jQuery.ajax({
-      type: 'POST',
-      data: lock_attr,
-      url: window.location.href.replace(/\#.*/,"")+"machine/mawake",
-      dataType: 'json',
-      error: function() {},
-      success: function(r) {
-        window.location.href = window.location.href;
-      }
-    });
+ $("#format-button").click(function(){
+
+    var lock_attr;
+    var answer
+
+    if($("#from_machine option:selected").val() == $("#to_machine option:selected").val()) {
+       lock_attr = {"machine": $("#single_machine option:selected").val() , "host_group": $("#select_hostgroup option:selected").val()};
+       answer = confirm("Format machine " + $("#single_machine option:selected").val() + "?")
+    }
+    else{
+       lock_attr = {"from": $("#from_machine option:selected").val(), "to": $("#to_machine option:selected").val() , "host_group": $("#select_hostgroup option:selected").val()} ;
+       answer = confirm("Format machines " + $("#from_machine option:selected").val() +" to " +$("#to_machine option:selected").val() + "?")
+    }
+
+    if(answer){
+      jQuery.ajax({
+        type: 'POST',
+        data: lock_attr,
+        url: window.location.href.replace(/\#.*/,"").replace(/format$/,"")+"machine/mformat",
+        dataType: 'json',
+        error: function() {},
+        success: function(r) {
+          window.location.href = window.location.href;
+        }
+      });
+    }
+
   });
-  //$(".locked[title]").tooltip();
 });
 </script>
 
-<%- flash.each do |key, msg| -%>
-  <div id="<%= key %>">
-    <p><%= msg %></p>
-    <div class="clear"></div>
-  </div>
-<%- end -%>
 
 <div id="main">
   <% if @machines.blank? %>
     <p>There are not any machines currently in the system.</p>
   <% else %>
-    <ul id="machines">
-      <div id="control-menu">
-        <div id="locks" class="menu-item">
-          <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
-          <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
-          <span id="lock-button" class="button lock-button"><%= submit_tag "Lock" %></span>
-          <span id="awake-button" class="button awake-button"><%= submit_tag "Awake" %></span>
+      <div id="reset-control-menu">
+        <div id="reset_machine_selection">
+	   <div id="multiple-machine-selection" class="menu-item">
+             <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+             <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+           </div>
+		<p>or</p>
+	   <div id="single-machine-selection" class="menu-item">    	  
+             <span class="single_machine">Machine <%= select_tag "single_machine", options_from_collection_for_select(@machines, "id", "id") %></span>        
+	   </div>
         </div>
+	<div id="base-system-selection" class="menu-item"> 
+	    <span class="select_hostgroup"><%= select_tag "select_hostgroup", options_from_collection_for_select(@options, "last", "first") %></span> 
+            <span id="format-button" class="button format-button"><%= submit_tag "Format" %></span>
+	 </div>
       </div>
-  </ul>
   <% end %>
 </div>
