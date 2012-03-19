@@ -11,8 +11,8 @@
       <h1 id="title">Reservas Cloudinha</h1>
     </div>  
     <ul id="tabs">
- 	<li id="tab1"><a href="http://requests.tests.pt/">Requests</a></li>
- 	<li id="tab2"><a href="http://requests.tests.pt/format">Format Machines</a></li>
+ 	<li id="tab1"><%= link_to 'Requests', root_url  %></li>
+ 	<li id="tab1"><%= link_to 'Format Machines', {:action => 'format'}  %></li>
     </ul>  
 
     <%= yield %>
