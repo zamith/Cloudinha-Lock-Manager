@@ -6,3 +6,7 @@ foreman:
   database: dummy
   port: 3306
   socket: "/tmp/mysql.sock"
+
+#foreman hosts info
+foreman_url: http://foreman.example.com
+foreman_ip_range: 192.168.1
