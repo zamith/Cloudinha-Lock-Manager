@@ -1,0 +1,57 @@
+<script>
+jQuery(document).ready(function($){
+
+ $("#format-button").click(function(){
+
+    var lock_attr;
+    var answer
+
+    if($("#from_machine option:selected").val() == $("#to_machine option:selected").val()) {
+       lock_attr = {"machine": $("#single_machine option:selected").val() , "host_group": $("#select_hostgroup option:selected").val()};
+       answer = confirm("Format machine " + $("#single_machine option:selected").val() + "?")
+    }
+    else{
+       lock_attr = {"from": $("#from_machine option:selected").val(), "to": $("#to_machine option:selected").val() , "host_group": $("#select_hostgroup option:selected").val()} ;
+       answer = confirm("Format machines " + $("#from_machine option:selected").val() +" to " +$("#to_machine option:selected").val() + "?")
+    }
+
+    if(answer){
+      jQuery.ajax({
+        type: 'POST',
+        data: lock_attr,
+        url: window.location.href.replace(/\#.*/,"").replace(/format$/,"")+"machine/mformat",
+        dataType: 'json',
+        error: function() {},
+        success: function(r) {
+          window.location.href = window.location.href;
+        }
+      });
+    }
+
+  });
+});
+</script>
+
+
+<div id="main">
+  <% if @machines.blank? %>
+    <p>There are not any machines currently in the system.</p>
+  <% else %>
+      <div id="reset-control-menu">
+        <div id="reset_machine_selection">
+	   <div id="multiple-machine-selection" class="menu-item">
+             <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+             <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+           </div>
+		<p>or</p>
+	   <div id="single-machine-selection" class="menu-item">    	  
+             <span class="single_machine">Machine <%= select_tag "single_machine", options_from_collection_for_select(@machines, "id", "id") %></span>        
+	   </div>
+        </div>
+	<div id="base-system-selection" class="menu-item"> 
+	    <span class="select_hostgroup"><%= select_tag "select_hostgroup", options_from_collection_for_select(@options, "last", "first") %></span> 
+            <span id="format-button" class="button format-button"><%= submit_tag "Format" %></span>
+	 </div>
+      </div>
+  <% end %>
+</div>
