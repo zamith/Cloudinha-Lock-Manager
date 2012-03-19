@@ -9,13 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120127142536) do
+ActiveRecord::Schema.define(:version => 20120314110813) do
 
   create_table "machines", :force => true do |t|
     t.string   "user",       :default => "free", :null => false
     t.string   "domain"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mac"
   end
 
   create_table "requests", :force => true do |t|
