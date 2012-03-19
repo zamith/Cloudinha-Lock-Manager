@@ -1,44 +1,3 @@
-require 'patron'
-
-module Foreman_Api
-
-  def self.deleteHost(hostname)
-    sess = Patron::Session.new
-    sess.timeout = 10
-    sess.base_url = "http://foreman.lsd.com/hosts/"
-    res = sess.delete(hostname, {"Accept" => "application/json"})
-    if not res.status_line.include? "HTTP/1.1 200 OK"
-      return "error"
-    end
-  end
-
-  def self.addHost(hostname, hostgroup, id, mac)
-    sess = Patron::Session.new
-    sess.base_url = "http://foreman.lsd.com"
-    if hostname.match(/^([^\.]*)\..*/) 
-      hostname_name = $1
-      id = 200 + Integer(id)
-      ip = "192.168.111."+id.to_s
-
-      param_hash = Hash.new
-      param_hash["host[name]"] = hostname_name
-      param_hash["host[hostgroup_id]"] = hostgroup
-      param_hash["host[ip]"] = ip
-      param_hash["host[build]"] = 1
-      param_hash["host[mac]"] = mac
-
-      res = sess.post("/hosts", param_hash  ,{"Accept" => "application/json"})
-      
-      if not res.status_line.include? "HTTP/1.1 201 Created"
-        return res.body
-      else
-        return "sucess"
-      end
-    else 
-      return "error"
-    end 
-  end
-end
 
 class MachineController < ApplicationController
 
@@ -85,9 +44,9 @@ class MachineController < ApplicationController
     machines.each{ |machine_id|
 
       machine = Machine.find machine_id
-      Foreman_Api.deleteHost(machine.domain)
-      res = Foreman_Api.addHost(machine.domain, selected_profile, machine_id, machine.mac)    
-      call = "/usr/bin/cawake "+ machine
+      Foreman.deleteHost(machine.domain)
+      res = Foreman.addHost(machine.domain, selected_profile, machine_id, machine.mac)    
+      call = "/usr/bin/cawake "+ machine_id
       system call
       call = "ssh root@192.168.111."+(200+Integer(machine_id)).to_s+" reboot"
       system call
