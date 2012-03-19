@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
  map.root :controller => "machine", :action=> "list"
  map.connect '/format', :controller => "machine", :action => "format"
   
- map.resources :machine, :collection => { :unlock => :post, :lock => :post,:mawake => :post, :mshutdown => :post }, :member => { :awake => :get, :shutdown => :get }
+ map.resources :machine, :collection => { :unlock => :post, :lock => :post , :mformat => :post  ,:mawake => :post, :mshutdown => :post }, :member => { :awake => :get, :shutdown => :get }
  # map.connect 'machine/list', :controller => 'machine', :action => 'list'
 
   # The priority is based upon order of creation: first created -> highest priority.
