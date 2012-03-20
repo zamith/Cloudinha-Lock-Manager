@@ -1,27 +1,27 @@
 require 'yaml'
 require 'patron'
 
-class Foreman 
+class Foreman
 
   foreman_config = YAML.load_file "#{RAILS_ROOT}/config/foreman.yml"
-  
+
   @@foreman_url = ''
   @@foreman_ip_range = ''
   if foreman_config['foreman_url']
-    @@foreman_url = foreman_config['foreman_url']  
+    @@foreman_url = foreman_config['foreman_url']
   end
   if foreman_config['foreman_ip_range']
     @@foreman_ip_range = foreman_config['foreman_ip_range']
   end
-      
-  def self.getHostgroups 
+
+  def self.getHostgroups
     begin
 
       foreman_db_config = YAML.load_file "#{RAILS_ROOT}/config/foreman.yml"
-      
+
       if not foreman_db_config['foreman']
         Rails.logger.info "No configuration present for foreman database"
-        return []   
+        return []
       end
 
       database_config = foreman_db_config['foreman']
@@ -34,29 +34,29 @@ class Foreman
       end
 
       mysql_db = Mysql::new(database_config['hostname'], database_config['username'],  database_config['password'],
-                            database_config['database'], database_config['port'] , database_config['socket'])    
-      
+                            database_config['database'], database_config['port'] , database_config['socket'])
+
       statement = mysql_db.prepare "select id,name from hostgroups"
-      res = statement.execute 
+      res = statement.execute
 
       host_groups = Hash.new
-      
+
       while row = statement.fetch do
         value =  row[0].to_s+"-"+row[1].to_s.gsub(/(\s)/,'-').downcase
         host_groups[row[1]] = value
       end
 
       return host_groups
-      
+
     rescue Mysql::Error => e
       puts "Error code: #{e.errno}"
       puts "Error message: #{e.error}"
       Rails.logger.info "Mysql error on hostgroup retrieval: #{e.error}"
-      return []   
+      return []
     ensure
-      mysql_db.close if mysql_db  
+      mysql_db.close if mysql_db
     end
-  end 
+  end
 
   def self.deleteHost(hostname)
 
@@ -99,13 +99,14 @@ class Foreman
 
       if not res.status_line.include? "HTTP/1.1 201 Created"
         Rails.logger.info "Error on host creation:" + res.status_line
+	Rails.logger.info res.body
       else
         Rails.logger.info "Host created: " + res.status_line
       end
     else
-      Rails.logger.info "Error on host creation, bad hostname: " + hostname 
+      Rails.logger.info "Error on host creation, bad hostname: " + hostname
     end
   end
 
-  
+
 end
