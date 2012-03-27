@@ -20,6 +20,16 @@ span {
   color:#fff;	
 }
 
+.machine-type-container {
+  float: left;
+}
+
+.type-title {
+  font-weight: bold;
+  font-size: 1.3em;
+  padding-left: 10px;
+}
+
 .lock-status {
   color: #CC1100;
 }

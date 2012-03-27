@@ -80,35 +80,45 @@ jQuery(document).ready(function($){
 <%- end -%>
 
 <div id="main">
-  <% if @machines.blank? %>
+  <% if @machines_list_by_type.blank? %>
     <p>There are not any machines currently in the system.</p>
   <% else %>
-    <ul id="machines">
+    <ul id="machines-type">
       <div id="control-menu">
         <div id="locks" class="menu-item">
-          <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
-          <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+          <span class="from_machine">
+            From: <%= select_tag "from_machine", options_from_collection_for_select(@machines_list_by_type.values.flatten, "id", "id") %>
+          </span>
+          <span class="to_machine">
+            To: <%= select_tag "to_machine", options_from_collection_for_select(@machines_list_by_type.values.flatten, "id", "id") %>
+          </span>
           <span id="lock-button" class="button lock-button"><%= submit_tag "Lock" %></span>
           <span id="unlock-button" class="button unlock-button"><%= submit_tag "Unlock" %></span>
 	  <span id="awake-button" class="button awake-button"><%= submit_tag "Awake" %></span>
 	  <span id="shutdown-button" class="button shutdown-button"><%= submit_tag "Shutdown" %></span>
         </div>
       </div>
-      <% @machines.each do |m| %>
-        <% unless m.free? %> 
-          <div title="Locked by <%= m.user %>" class="container locked">
-        <% else %>
-          <div class="container">
-        <% end %>
-          <li id="machine-<%= m.id %>" class="machine"> 
-            <span class="machine-name">Machine <%=m.id%></span> 
-            <span class="machine-status <%= (m.alive?) ? "alive" : "dead" %>"><%=m.status%></span>
-            <span class="up-link"><%= link_to "Awake", awake_machine_path(m)%></span>
-            <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m)%></span>  
-            <% unless m.free? %>
-              <span class="lock-status">Locked by <%= m.user %></span>
+      <% @machines_list_by_type.each do |type,machine_list| %>
+        <% type_name = MachineType.find(type).name %>
+        <div class="machine-type-container">
+          <div class="type-title"><%= type_name %></div>
+          <% machine_list.each do |m| %>
+            <% unless m.free? %> 
+              <div id="<%= type_name %>" title="Locked by <%= m.user %>" class="container locked">
+            <% else %>
+              <div id="<%= type_name %>" class="container">
             <% end %>
-          </li>
+              <li id="machine-<%= m.id %>" class="machine"> 
+                <span class="machine-name">Machine <%=m.id%></span> 
+                <span class="machine-status <%= (m.alive?) ? "alive" : "dead" %>"><%=m.status%></span>
+                <span class="up-link"><%= link_to "Awake", awake_machine_path(m)%></span>
+                <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m)%></span>  
+                <% unless m.free? %>
+                  <span class="lock-status">Locked by <%= m.user %></span>
+                <% end %>
+              </li>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </ul>

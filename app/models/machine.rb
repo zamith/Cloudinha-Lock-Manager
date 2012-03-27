@@ -14,6 +14,7 @@ class Machine < ActiveRecord::Base
   # Extra definitions
   # ==========================================================================
 
+  named_scope :of_type, lambda { |type| {:conditions => ["machine_types_id = ?",type]}}
 
   # ==========================================================================
   # Instance Methods

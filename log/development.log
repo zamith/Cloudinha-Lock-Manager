@@ -315,3 +315,925 @@ Migrating to Requests (20120127142536)
   [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
   [4;35;1mMachine Update (0.3ms)[0m   [0mUPDATE `machines` SET `updated_at` = '2012-02-07 18:27:34', `user` = 'LBB' WHERE `id` = 1[0m
   [4;36;1mSQL (22.9ms)[0m   [0;1mCOMMIT[0m
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-26 18:42:04) [GET]
+  [4;36;1mMachine Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: machines: SELECT * FROM "machines" [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: machines: SELECT * FROM "machines" ):
+  app/controllers/machine_controller.rb:6:in `list'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.3ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (26.3ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("schema_migrations")[0m
+  [4;36;1mSQL (5.7ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20120127105553')[0m
+Migrating to CreateUsers (20120127105621)
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20120127105621')[0m
+Migrating to CreateMachines (20120127105737)
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "machines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user" varchar(255) DEFAULT 'free' NOT NULL, "domain" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20120127105737')[0m
+Migrating to Machines (20120127142505)
+  [4;35;1mSQL (0.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20120127142505')[0m
+Migrating to Users (20120127142521)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20120127142521')[0m
+Migrating to Requests (20120127142536)
+  [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20120127142536')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("machines")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("requests")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-26 18:42:55) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+Completed in 95ms (View: 91, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mCREATE TABLE "machine_type" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20120326174322')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machine_type")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machines")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("requests")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mDROP TABLE "machine_type"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20120326174322'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("machines")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("requests")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "machine_type" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "machine_type" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mCREATE TABLE "machine_type" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (36.1ms)[0m   [0;1mALTER TABLE "machines" ADD "machine_type_id" integer DEFAULT 1 NOT NULL[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20120326174322')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machine_type")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machines")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("requests")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mDROP TABLE "machine_type"[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_machines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user" varchar(255) DEFAULT 'free' NOT NULL, "domain" varchar(255), "created_at" datetime, "updated_at" datetime, "machine_type_id" integer DEFAULT 1 NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machines")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mDROP TABLE "machines"[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "machines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user" varchar(255) DEFAULT 'free' NOT NULL, "domain" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_machines")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mDROP TABLE "altered_machines"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20120326174322'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machines")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("requests")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "machine_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mALTER TABLE "machines" ADD "machine_types_id" integer DEFAULT 1 NOT NULL[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20120326174322')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machine_types")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machines")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("requests")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+WARNING: Can't mass-assign these protected attributes: type
+WARNING: Can't mass-assign these protected attributes: type
+  [4;36;1mMachineType Create (0.6ms)[0m   [0;1mINSERT INTO "machine_types" ("created_at", "updated_at", "type") VALUES('2012-03-26 17:55:07', '2012-03-26 17:55:07', NULL)[0m
+WARNING: Can't mass-assign these protected attributes: type
+  [4;35;1mMachineType Create (0.7ms)[0m   [0mINSERT INTO "machine_types" ("created_at", "updated_at", "type") VALUES('2012-03-26 17:55:51', '2012-03-26 17:55:51', NULL)[0m
+WARNING: Can't mass-assign these protected attributes: type
+  [4;36;1mMachineType Create (0.3ms)[0m   [0;1mINSERT INTO "machine_types" ("created_at", "updated_at", "type") VALUES('2012-03-26 17:55:57', '2012-03-26 17:55:57', NULL)[0m
+WARNING: Can't mass-assign these protected attributes: type
+  [4;35;1mMachineType Create (0.3ms)[0m   [0mINSERT INTO "machine_types" ("created_at", "updated_at", "type") VALUES('2012-03-26 17:56:11', '2012-03-26 17:56:11', NULL)[0m
+WARNING: Can't mass-assign these protected attributes: type
+  [4;36;1mMachineType Create (0.5ms)[0m   [0;1mINSERT INTO "machine_types" ("created_at", "updated_at", "type") VALUES('2012-03-26 17:56:38', '2012-03-26 17:56:38', NULL)[0m
+  [4;35;1mMachineType Load (0.4ms)[0m   [0mSELECT * FROM "machine_types" [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+WARNING: Can't mass-assign these protected attributes: type
+WARNING: Can't mass-assign these protected attributes: type
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDROP TABLE "machine_types"[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_machines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user" varchar(255) DEFAULT 'free' NOT NULL, "domain" varchar(255), "created_at" datetime, "updated_at" datetime, "machine_types_id" integer DEFAULT 1 NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machines")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mDROP TABLE "machines"[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "machines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user" varchar(255) DEFAULT 'free' NOT NULL, "domain" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_machines")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mDROP TABLE "altered_machines"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20120326174322'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machines")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("requests")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to CreateMachineType (20120326174322)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "machine_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mALTER TABLE "machines" ADD "machine_types_id" integer DEFAULT 1 NOT NULL[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20120326174322')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machine_types")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machines")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("requests")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+WARNING: Can't mass-assign these protected attributes: type
+  [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."name" = 'Cloudinha') LIMIT 1[0m
+  [4;35;1mMachineType Create (0.4ms)[0m   [0mINSERT INTO "machine_types" ("name", "created_at", "updated_at") VALUES('Cloudinha', '2012-03-27 10:07:39', '2012-03-27 10:07:39')[0m
+  [4;36;1mMachineType Load (0.3ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."name" = 'PDs') LIMIT 1[0m
+  [4;35;1mMachineType Create (0.3ms)[0m   [0mINSERT INTO "machine_types" ("name", "created_at", "updated_at") VALUES('PDs', '2012-03-27 10:07:39', '2012-03-27 10:07:39')[0m
+  [4;36;1mMachineType Load (0.4ms)[0m   [0;1mSELECT * FROM "machine_types" [0m
+  [4;35;1mMachine Create (0.7ms)[0m   [0mINSERT INTO "machines" ("created_at", "updated_at", "domain", "machine_types_id", "user") VALUES('2012-03-27 10:11:17', '2012-03-27 10:11:17', 'Machine1', 1, 'free')[0m
+  [4;36;1mMachine Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such column: machine_type_id: SELECT * FROM "machines" WHERE (machine_type_id = 1) [0m
+  [4;35;1mMachine Load (0.0ms)[0m   [0mSQLite3::SQLException: no such column: machine_type_id: SELECT * FROM "machines" WHERE (machine_type_id = 1) [0m
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" WHERE (machine_types_id = 1) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mMachineType Load (0.3ms)[0m   [0;1mSELECT * FROM "machine_types" [0m
+  [4;35;1mMachine Load (0.3ms)[0m   [0mSELECT * FROM "machines" [0m
+  [4;36;1mMachine Load (0.3ms)[0m   [0;1mSELECT * FROM "machines" [0m
+  [4;35;1mMachine Load (0.3ms)[0m   [0mSELECT * FROM "machines" [0m
+  [4;36;1mMachine Load (0.2ms)[0m   [0;1mSELECT * FROM "machines" [0m
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:18:34) [GET]
+  [4;36;1mMachine Load (0.5ms)[0m   [0;1mSELECT * FROM "machines" [0m
+
+TypeError (can't convert Fixnum into String):
+  app/controllers/machine_controller.rb:10:in `+'
+  app/controllers/machine_controller.rb:10:in `list'
+  app/controllers/machine_controller.rb:9:in `each'
+  app/controllers/machine_controller.rb:9:in `list'
+  app/controllers/machine_controller.rb:8:in `list'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.2ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:18:53) [GET]
+  [4;35;1mMachine Load (0.6ms)[0m   [0mSELECT * FROM "machines" [0m
+
+NoMethodError (undefined method `match' for nil:NilClass):
+  app/controllers/machine_controller.rb:12:in `list'
+  app/controllers/machine_controller.rb:9:in `each'
+  app/controllers/machine_controller.rb:9:in `list'
+  app/controllers/machine_controller.rb:8:in `each'
+  app/controllers/machine_controller.rb:8:in `list'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (137.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:19:06) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+
+NoMethodError (undefined method `match' for nil:NilClass):
+  app/controllers/machine_controller.rb:13:in `list'
+  app/controllers/machine_controller.rb:10:in `each'
+  app/controllers/machine_controller.rb:10:in `list'
+  app/controllers/machine_controller.rb:8:in `each'
+  app/controllers/machine_controller.rb:8:in `list'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (53.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:19:30) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+
+NoMethodError (undefined method `match' for nil:NilClass):
+  app/controllers/machine_controller.rb:14:in `list'
+  app/controllers/machine_controller.rb:10:in `each'
+  app/controllers/machine_controller.rb:10:in `list'
+  app/controllers/machine_controller.rb:8:in `each'
+  app/controllers/machine_controller.rb:8:in `list'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (140.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:19:47) [GET]
+  [4;36;1mMachine Load (0.5ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+Completed in 96ms (View: 90, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:20:22) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map) on line #89 of app/views/machine/list.html.erb:
+86:     <ul id="machines">
+87:       <div id="control-menu">
+88:         <div id="locks" class="menu-item">
+89:           <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+90:           <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+91:           <span id="lock-button" class="button lock-button"><%= submit_tag "Lock" %></span>
+92:           <span id="unlock-button" class="button unlock-button"><%= submit_tag "Unlock" %></span>
+
+    app/views/machine/list.html.erb:89
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (45.1ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:24:55) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map) on line #89 of app/views/machine/list.html.erb:
+86:     <ul id="machines-type">
+87:       <div id="control-menu">
+88:         <div id="locks" class="menu-item">
+89:           <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+90:           <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+91:           <span id="lock-button" class="button lock-button"><%= submit_tag "Lock" %></span>
+92:           <span id="unlock-button" class="button unlock-button"><%= submit_tag "Unlock" %></span>
+
+    app/views/machine/list.html.erb:89
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (43.1ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:24:57) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.map) on line #89 of app/views/machine/list.html.erb:
+86:     <ul id="machines-type">
+87:       <div id="control-menu">
+88:         <div id="locks" class="menu-item">
+89:           <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+90:           <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines, "id", "id") %></span>
+91:           <span id="lock-button" class="button lock-button"><%= submit_tag "Lock" %></span>
+92:           <span id="unlock-button" class="button unlock-button"><%= submit_tag "Unlock" %></span>
+
+    app/views/machine/list.html.erb:89
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (111.4ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mMachine Create (0.5ms)[0m   [0mINSERT INTO "machines" ("created_at", "updated_at", "domain", "machine_types_id", "user") VALUES('2012-03-27 10:25:58', '2012-03-27 10:25:58', 'Machine2', 2, 'free')[0m
+  [4;36;1mMachine Load (0.3ms)[0m   [0;1mSELECT * FROM "machines" [0m
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:40:54) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.flatten) on line #89 of app/views/machine/list.html.erb:
+86:     <ul id="machines-type">
+87:       <div id="control-menu">
+88:         <div id="locks" class="menu-item">
+89:           <span class="from_machine">From: <%= select_tag "from_machine", options_from_collection_for_select(@machines.flatten, "id", "id") %></span>
+90:           <span class="to_machine">To: <%= select_tag "to_machine", options_from_collection_for_select(@machines.flatten, "id", "id") %></span>
+91:           <span id="lock-button" class="button lock-button"><%= submit_tag "Lock" %></span>
+92:           <span id="unlock-button" class="button unlock-button"><%= submit_tag "Unlock" %></span>
+
+    app/views/machine/list.html.erb:89
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (42.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:41:29) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `flatten' for #<ActiveSupport::OrderedHash:0x1044b23f0>) on line #90 of app/views/machine/list.html.erb:
+87:       <div id="control-menu">
+88:         <div id="locks" class="menu-item">
+89:           <span class="from_machine">
+90:             From: <%= select_tag "from_machine", options_from_collection_for_select(@machines_list_by_type.flatten, "id", "id") %>
+91:           </span>
+92:           <span class="to_machine">
+93:             To: <%= select_tag "to_machine", options_from_collection_for_select(@machines_list_by_type.flatten, "id", "id") %>
+
+    app/views/machine/list.html.erb:90
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (42.8ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:41:40) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `free?' for nil:NilClass) on line #103 of app/views/machine/list.html.erb:
+100:       </div>
+101:       <% @machines_list_by_type.each do |machine_list| %>
+102:         <% machine_list.each do |type, m| %>
+103:           <% unless m.free? %> 
+104:             <div id="<%= type.name %>" title="Locked by <%= m.user %>" class="container locked">
+105:           <% else %>
+106:             <div id="<%= type.name %>" class="container">
+
+    app/views/machine/list.html.erb:103
+    app/views/machine/list.html.erb:102:in `each'
+    app/views/machine/list.html.erb:102
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (121.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:42:01) [GET]
+  [4;35;1mMachine Load (0.5ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `free?' for nil:NilClass) on line #104 of app/views/machine/list.html.erb:
+101:       <% @machines_list_by_type.each do |machine_list| %>
+102: p machine_list
+103:         <% machine_list.each do |type, m| %>
+104:           <% unless m.free? %> 
+105:             <div id="<%= type.name %>" title="Locked by <%= m.user %>" class="container locked">
+106:           <% else %>
+107:             <div id="<%= type.name %>" class="container">
+
+    app/views/machine/list.html.erb:104
+    app/views/machine/list.html.erb:103:in `each'
+    app/views/machine/list.html.erb:103
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (118.2ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:42:15) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `free?' for nil:NilClass) on line #104 of app/views/machine/list.html.erb:
+101:       <% @machines_list_by_type.each do |machine_list| %>
+102: p machine_list
+103:         <% machine_list.each do |type, m| %>
+104:           <% unless m.free? %> 
+105:             <div id="<%= type.name %>" title="Locked by <%= m.user %>" class="container locked">
+106:           <% else %>
+107:             <div id="<%= type.name %>" class="container">
+
+    app/views/machine/list.html.erb:104
+    app/views/machine/list.html.erb:103:in `each'
+    app/views/machine/list.html.erb:103
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (46.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:42:32) [GET]
+  [4;35;1mMachine Load (0.5ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `free?' for nil:NilClass) on line #104 of app/views/machine/list.html.erb:
+101:       <% @machines_list_by_type.each do |machine_list| %>
+102: <% p machine_list %>
+103:         <% machine_list.each do |type, m| %>
+104:           <% unless m.free? %> 
+105:             <div id="<%= type.name %>" title="Locked by <%= m.user %>" class="container locked">
+106:           <% else %>
+107:             <div id="<%= type.name %>" class="container">
+
+    app/views/machine/list.html.erb:104
+    app/views/machine/list.html.erb:103:in `each'
+    app/views/machine/list.html.erb:103
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (45.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:42:55) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `free?' for nil:NilClass) on line #105 of app/views/machine/list.html.erb:
+102:         <% machine_list.each do |type, m| %>
+103:           <% p type %>
+104:           <% p m %>
+105:           <% unless m.free? %> 
+106:             <div id="<%= type.name %>" title="Locked by <%= m.user %>" class="container locked">
+107:           <% else %>
+108:             <div id="<%= type.name %>" class="container">
+
+    app/views/machine/list.html.erb:105
+    app/views/machine/list.html.erb:102:in `each'
+    app/views/machine/list.html.erb:102
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (123.8ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:45:59) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+
+ActionView::TemplateError (undefined method `name' for 1:Fixnum) on line #108 of app/views/machine/list.html.erb:
+105:           <% unless m.free? %> 
+106:             <div id="<%= type.name %>" title="Locked by <%= m.user %>" class="container locked">
+107:           <% else %>
+108:             <div id="<%= type.name %>" class="container">
+109:           <% end %>
+110:             <li id="machine-<%= m.id %>" class="machine"> 
+111:               <span class="machine-name">Machine <%=m.id%></span> 
+
+    app/views/machine/list.html.erb:108
+    app/views/machine/list.html.erb:102:in `each'
+    app/views/machine/list.html.erb:102
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:47:07) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+
+ActionView::TemplateError (undefined method `status' for #<Machine:0x1040eba28>) on line #111 of app/views/machine/list.html.erb:
+108:           <% end %>
+109:             <li id="machine-<%= m.id %>" class="machine"> 
+110:               <span class="machine-name">Machine <%=m.id%></span> 
+111:               <span class="machine-status <%= (m.alive?) ? "alive" : "dead" %>"><%=m.status%></span>
+112:               <span class="up-link"><%= link_to "Awake", awake_machine_path(m)%></span>
+113:               <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m)%></span>  
+114:               <% unless m.free? %>
+
+    app/models/machine.rb:24:in `alive?'
+    app/views/machine/list.html.erb:111
+    app/views/machine/list.html.erb:103:in `each'
+    app/views/machine/list.html.erb:103
+    app/views/machine/list.html.erb:101
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.4ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:48:02) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;36;1mMachineType Load (0.1ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 13ms (View: 7, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:48:59) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;36;1mMachineType Load (0.3ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;35;1mMachineType Load (0.3ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 89ms (View: 83, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:51:00) [GET]
+  [4;36;1mMachine Load (0.5ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;36;1mMachineType Load (0.1ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 35ms (View: 28, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:54:10) [GET]
+  [4;35;1mMachine Load (0.6ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;35;1mMachineType Load (0.1ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 14ms (View: 8, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:56:27) [GET]
+  [4;36;1mMachine Load (0.5ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:56:41) [GET]
+  [4;35;1mMachine Load (0.4ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 19ms (View: 13, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:57:02) [GET]
+  [4;36;1mMachine Load (0.4ms)[0m   [0;1mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 77ms (View: 71, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing MachineController#list (for 127.0.0.1 at 2012-03-27 11:57:48) [GET]
+  [4;35;1mMachine Load (0.5ms)[0m   [0mSELECT * FROM "machines" [0m
+Rendering template within layouts/standard
+Rendering machine/list
+  [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
+  [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
+Completed in 17ms (View: 9, DB: 1) | 200 OK [http://localhost/]
