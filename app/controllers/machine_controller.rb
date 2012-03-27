@@ -1,3 +1,4 @@
+
 class MachineController < ApplicationController
 
   require 'open3'
@@ -7,21 +8,54 @@ class MachineController < ApplicationController
     
     @machines_list_by_type.values.each do |machines|
       machines.each do |machine|
-        machine[:status] = 'Alive'
-        #stdin, stdout, stdin = Open3.popen3('/var/www/ganglia2/nagios/check_heartbeat.sh', "host="+machine[:domain],"threshold=60")
-        #out = stdout.gets
-        #if out.match(/.*(\d\d):(\d\d)$/)
-        #  if $1 == "00" && $2.to_i <= 30 
-        #    machine[:status] = 'Alive'
-        #  else
-        #    machine[:status] = 'Dead'
-        #  end
-        #else
-        #  machine[:status] = 'Dead'
-        #end
+        stdin, stdout, stdin = Open3.popen3('/var/www/ganglia2/nagios/check_heartbeat.sh', "host="+machine[:domain],"threshold=60")
+        out = stdout.gets
+        if out.match(/.*(\d\d):(\d\d)$/)
+          if $1 == "00" && $2.to_i <= 30 
+            machine[:status] = 'Alive'
+          else
+            machine[:status] = 'Dead'
+          end
+        else
+          machine[:status] = 'Dead'
+        end
       end
-    end
+     end
   end
+	
+  def format
+    @machines = Machine.all
+    @options = Foreman.getHostgroups
+  end
+  
+  def mformat
+    machines = Array.new
+    if params.has_key? :machine  
+      machines << params[:machine]
+    elsif params.has_key? :from and params.has_key? :to
+      params[:from].upto(params[:to]){ |machine_num| 
+        machines << machine_num
+      }
+    end
+   
+    selected_profile = params[:host_group] 
+    
+    machines.each{ |machine_id|
+
+      machine = Machine.find machine_id
+      Foreman.deleteHost(machine.domain)
+      res = Foreman.addHost(machine.domain, selected_profile, machine_id, machine.mac)    
+      call = "/usr/bin/cawake "+ machine_id
+      system call
+      call = "ssh root@192.168.111."+(200+Integer(machine_id)).to_s+" reboot"
+      system call
+
+    }
+  
+    redirect_to root_path
+    
+  end
+
 
 #  def show 
 #    render :action => 'list'
@@ -29,28 +63,24 @@ class MachineController < ApplicationController
 
   def awake
     call = "/usr/bin/cawake "+params[:id]
-    puts call
     system call
     redirect_to root_path
   end 
 
   def mawake
     call = "/usr/bin/cawake -t 10 "+params[:from]+"-"+params[:to]
-    puts call
     system call
     redirect_to root_path
   end
 
   def shutdown
     call = "/usr/bin/cshutdown "+params[:id]
-    puts call
     system call
     redirect_to root_path
   end
 
   def mshutdown
     call = "/usr/bin/cshutdown "+params[:from]+"-"+params[:to]
-    puts call
     system call
     redirect_to root_path
   end

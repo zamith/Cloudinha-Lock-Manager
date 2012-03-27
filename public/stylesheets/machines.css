@@ -68,3 +68,32 @@ span {
 .machine .dead {
   color: red;
 }
+
+/*Reset page*/
+
+
+#reset-control-menu{
+  display:table;
+}
+
+#reset_machine_selection{
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle;
+  border-right: 1px solid #999; 
+}
+
+.multiple-machine-selection {
+  top: 0;
+  width:10px;
+}
+
+.single-machine-selection{
+  width:10px;
+  top: 20px;  
+}
+
+#base-system-selection{
+  display:table-cell; 
+  vertical-align:middle;
+}

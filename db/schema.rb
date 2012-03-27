@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120326174322) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "machine_types_id", :default => 1,      :null => false
+    t.string   "mac"
   end
 
   create_table "requests", :force => true do |t|

@@ -7,6 +7,23 @@
 #error a { border: 1px solid #900; color: #900; }
 #notice a:hover, #error a:hover { color: #333; border: 1px solid #333; }
 
+#tabs {
+ border-bottom: .5em solid #000;
+ margin: 0;
+ padding: 0;
+ }
+#tabs li { 
+ display:inline; 
+ border-top: .1em solid #000;
+ border-left: .1em solid #000;
+ border-right: .1em solid #000;
+ }
+#tabs li a {
+ text-decoration: none;
+ padding: 0.25em 1em;
+ color: #000;
+} 
+
 #footer {
   border-top: 1px solid black;
   text-align: center;

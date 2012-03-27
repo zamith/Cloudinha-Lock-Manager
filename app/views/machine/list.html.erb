@@ -114,7 +114,7 @@ jQuery(document).ready(function($){
                 <span class="up-link"><%= link_to "Awake", awake_machine_path(m)%></span>
                 <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m)%></span>  
                 <% unless m.free? %>
-                  <span class="lock-status">Locked by <%= m.user %></span>
+                  <span class="lock-status">Locked by <%= truncate(m.user, :length => 8) %></span>
                 <% end %>
               </li>
             </div>

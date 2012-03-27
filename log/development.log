@@ -1237,3 +1237,32 @@ Rendering machine/list
   [4;36;1mMachineType Load (0.2ms)[0m   [0;1mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 1) [0m
   [4;35;1mMachineType Load (0.2ms)[0m   [0mSELECT * FROM "machine_types" WHERE ("machine_types"."id" = 2) [0m
 Completed in 17ms (View: 9, DB: 1) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateRequests (20120127105553)
+Migrating to CreateUsers (20120127105621)
+Migrating to CreateMachines (20120127105737)
+Migrating to Machines (20120127142505)
+Migrating to Users (20120127142521)
+Migrating to Requests (20120127142536)
+Migrating to MachinesMacs (20120314110813)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mALTER TABLE "machines" ADD "mac" varchar(255)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20120314110813')[0m
+Migrating to CreateMachineType (20120326174322)
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("machine_types")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("machines")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("requests")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
