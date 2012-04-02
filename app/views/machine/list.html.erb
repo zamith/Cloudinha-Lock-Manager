@@ -56,16 +56,21 @@ jQuery(document).ready(function($){
 
  $("#shutdown-button").click(function(){
     var lock_attr = {"from": $("#from_machine option:selected").val(), "to": $("#to_machine option:selected").val()}
-    jQuery.ajax({
-      type: 'POST',
-      data: lock_attr,
-      url: window.location.href.replace(/\#.*/,"")+"machine/mshutdown",
-      dataType: 'json',
-      error: function() {},
-      success: function(r) {
-        window.location.href = window.location.href;
-      }
-    });
+
+    answer = confirm("Shutdown machines " + $("#from_machine option:selected").val() +" to " +$("#to_machine option:selected").val() + "?")
+
+    if(answer){
+      jQuery.ajax({
+        type: 'POST',
+        data: lock_attr,
+        url: window.location.href.replace(/\#.*/,"")+"machine/mshutdown",
+        dataType: 'json',
+        error: function() {},
+        success: function(r) {
+          window.location.href = window.location.href;
+        }
+      });
+    }
   });
 
   //$(".locked[title]").tooltip();
@@ -95,16 +100,18 @@ jQuery(document).ready(function($){
         </div>
       </div>
       <% @machines.each do |m| %>
-        <% unless m.free? %> 
+        <% if not m.free? %> 
           <div title="Locked by <%= m.user %>" class="container locked">
-        <% else %>
-          <div class="container">
+        <% elsif m.pd? %>
+          <div class="container pd">
+	<% else %>
+	  <div class="container">
         <% end %>
           <li id="machine-<%= m.id %>" class="machine"> 
             <span class="machine-name">Machine <%=m.id%></span> 
             <span class="machine-status <%= (m.alive?) ? "alive" : "dead" %>"><%=m.status%></span>
             <span class="up-link"><%= link_to "Awake", awake_machine_path(m)%></span>
-            <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m)%></span>  
+            <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m) , :confirm => "Shutdown machine #{m.id} locked by #{m.user}?"%></span>  
             <% unless m.free? %>
               <span class="lock-status">Locked by <%= truncate(m.user, :length => 8) %></span>
             <% end %>
