@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
                 <span class="machine-name">Machine <%=m.id%></span> 
                 <span class="machine-status <%= (m.alive?) ? "alive" : "dead" %>"><%=m.status%></span>
                 <span class="up-link"><%= link_to "Awake", awake_machine_path(m)%></span>
-                <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m)%></span>  
+                <span class="down-link"><%= link_to "Shutdown", shutdown_machine_path(m),:confirm => "Shutdown machine #{m.id} locked by #{m.user}?" %></span>  
                 <% unless m.free? %>
                   <span class="lock-status">Locked by <%= truncate(m.user, :length => 8) %></span>
                 <% end %>
