@@ -4,13 +4,12 @@ class MachineController < ApplicationController
   require 'open3'
 
   def list
-    @machines = Machine.all
-    @machines.each do |machine|
-      stdin, stdout, stdin = Open3.popen3('/var/www/ganglia2/nagios/check_heartbeat.sh', "host="+machine[:domain],"threshold=60")
-      out = stdout.gets
-      if out.nil?
-        machine[:status] = 'Unknown'
-      else
+    @machines_list_by_type = Machine.all.group_by{|m|m.machine_types_id}
+    
+    @machines_list_by_type.values.each do |machines|
+      machines.each do |machine|
+        stdin, stdout, stdin = Open3.popen3('/var/www/ganglia2/nagios/check_heartbeat.sh', "host="+machine[:domain],"threshold=60")
+        out = stdout.gets
         if out.match(/.*(\d\d):(\d\d)$/)
           if $1 == "00" && $2.to_i <= 30 
             machine[:status] = 'Alive'

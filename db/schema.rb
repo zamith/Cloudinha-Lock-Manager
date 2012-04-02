@@ -9,13 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314110813) do
+ActiveRecord::Schema.define(:version => 20120326174322) do
+
+  create_table "machine_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "machines", :force => true do |t|
-    t.string   "user",       :default => "free", :null => false
+    t.string   "user",             :default => "free", :null => false
     t.string   "domain"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "machine_types_id", :default => 1,      :null => false
     t.string   "mac"
   end
 
